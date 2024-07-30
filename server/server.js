@@ -1,16 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const bodyparser = require("body-parser");
-
+const dotenv = require("dotenv");
 const app = express();
+dotenv.config();
+
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(cors({ origin: true, credentials: true }));
 
-const stripe = require("stripe")(
-  "sk_test_51MIGYsALUBQDIwXt4KJYqlR4Ij12coxR8w1GLgSKuhrZizmeCZF19C2YoOLVx3QAgny9DsjufPICQZHUIeWGqLRT00vZkh9rNm"
-);
+const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
 app.post("/checkout", async (req, res, next) => {
   try {
