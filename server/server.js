@@ -10,7 +10,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(cors({ origin: true, credentials: true }));
 
-const stripe = require("stripe")( process.env.STRIPE_API_KEY);
+const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
 app.post("/checkout", async (req, res, next) => {
   try {
